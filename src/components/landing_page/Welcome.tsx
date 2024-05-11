@@ -2,11 +2,12 @@ import React from "react";
 
 function Welcome() {
   return (
-    <section className="bg-medium-gray py-14 mb-8">
-      <div className="max-w-6xl mx-auto flex">
-        <div className="w-2/3 space-y-3">
-          <h2 className="text-3xl text-[#0C1D5A] font-bold">
-            Selamat Datang di Dealer Resmi Yamaha <br /> Bahana Ciamis
+    <section className="bg-medium-gray md:py-14 px-4 py-8 mb-8">
+      <div className="max-w-6xl mx-auto md:flex space-y-4 ">
+        <div className="md:w-2/3 space-y-3">
+          <h2 className="text-2xl md:text-3xl text-[#0C1D5A] font-bold">
+            Selamat Datang di Dealer Resmi Yamaha{" "}
+            <br className="hidden md:block" /> Bahana Ciamis
           </h2>
           <p>
             Selamat datang di situs resmi dealer Yamaha Bahana Ciamis. Sebagai
@@ -19,8 +20,8 @@ function Welcome() {
             atau menggunakan transportasi.
           </p>
         </div>
-        <div className="w-1/3 flex justify-end">
-          <div className="bg-blue-300 h-[240px] w-[270px] rounded-xl"></div>
+        <div className="md:w-1/3 flex justify-end">
+          <div className="bg-blue-300 h-[240px] md:w-[270px] w-full rounded-xl"></div>
         </div>
       </div>
     </section>

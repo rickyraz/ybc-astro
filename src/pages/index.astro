@@ -1,16 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import HeroSlider from "../components/HeroSlider";
-import FavoriteSlider from "../components/FavoriteSlider";
-import Welcome from "../components/Welcome";
-import ProductFilter from "../components/ProductFilter";
-import ArticleHome from "../components/ArticleHome";
+import ProductSlider from "../components/ProductSlider";
+import Welcome from "../components/landing_page/Welcome";
+import ProductFilter from "../components/landing_page/ProductFilter";
+import ArticleHome from "../components/landing_page/ArticleHome";
 ---
 
 <Layout title="Yamaha Bahana Ciamis">
   <main>
     <HeroSlider client:only="react" />
-    <FavoriteSlider client:only="react" />
+    <ProductSlider client:only="react" title={"PRODUK TERLARIS"} />
     <Welcome />
     <ProductFilter />
     <ArticleHome client:only="react" />

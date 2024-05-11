@@ -6,13 +6,17 @@ function ArticleHome() {
   const [ref] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free-snap",
-    slides: {
-      perView: 4,
-      spacing: 16,
+    breakpoints: {
+      "(min-width: 768px)": {
+        slides: {
+          perView: 4,
+          spacing: 16,
+        },
+      },
     },
   });
   return (
-    <div className="bg-blue-smooth-light px-8 pb-8 ">
+    <div className="bg-blue-smooth-light px-8 pb-8 mb-8">
       <div className="max-w-6xl mx-auto justify-start">
         <h2 className=" text-2xl font-bold  py-6 text-[#0C1D5A]">INFO</h2>
       </div>

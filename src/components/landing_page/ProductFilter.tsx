@@ -19,11 +19,11 @@ function ProductFilter() {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap space-x-4">
+      <div className="flex md:flex-wrap md:flex-row flex-col mx-4 md:mx-0 md:space-x-4">
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}
@@ -57,9 +57,9 @@ function ProductFilter() {
           </div>
         </div>
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}
@@ -93,9 +93,9 @@ function ProductFilter() {
           </div>
         </div>
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}
@@ -129,9 +129,9 @@ function ProductFilter() {
           </div>
         </div>
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}
@@ -165,9 +165,9 @@ function ProductFilter() {
           </div>
         </div>
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}
@@ -201,9 +201,9 @@ function ProductFilter() {
           </div>
         </div>
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">
-          <div className="px-8">
+          <div className="md:px-8 flex justify-center md:mx-0">
             <img
-              src={"/product/aerox.png"}
+              src="/product/aerox.png"
               alt="produk-aerox"
               width={178}
               height={178}

@@ -1,13 +1,14 @@
-import { MapPinned, Phone } from "lucide-react";
+import { MapPinned, Menu, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 function Header() {
   return (
     <header className=" sticky top-0 z-50">
       {/* Info */}
-
-      <section className="bg-[#112769] py-2">
+      <section className="bg-[#112769] py-2 hidden md:block">
         <div className=" flex items-center justify-between max-w-6xl mx-auto">
-          <div className="flex space-x-5">
+          <div className="flex  space-x-5">
             <div className="flex items-center text-xs space-x-2">
               <MapPinned className="size-5 text-[#9FB9F0]" />
               <p className="text-[#EDF2FF]">
@@ -69,23 +70,16 @@ function Header() {
       {/* Header */}
       <section className="bg-white after:top-0 shadow-sm ">
         <div className="max-w-6xl mx-auto ">
-          <header className="flex items-center py-4">
-            {/* <Image
-              src={"/bahana-logo.png"}
-              width={125}
-              height={50}
-              alt="Bahana Logo"
-            /> */}
+          <header className="flex items-center justify-between  py-6 mx-4 md:mx-0">
             <img
               src="/bahana-logo.png"
               alt="Bahana Logo"
-              width="125"
-              height="50"
+              className="w-28 md:w-[125px] md:h-[50px]"
               decoding="async"
               loading="lazy"
             />
-
-            <ul className="flex flex-1 justify-evenly font-bold text-[#08154B]">
+            <Menu className="md:hidden mr-4" />
+            <ul className="hidden  md:flex flex-1 justify-evenly font-bold text-[#08154B]">
               <li>PRODUK</li>
               <li>HARGA CASH & BROSUR CREDIT</li>
               <li>SYARAT CASH / CREDIT</li>

@@ -3,25 +3,30 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { CircleArrowRight } from "lucide-react";
 
-function FavoriteSlider() {
+function ProductSlider({ title }) {
+  // 768px
   const [ref] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free-snap",
-    slides: {
-      perView: 4,
-      spacing: 16,
+    breakpoints: {
+      "(min-width: 768px)": {
+        slides: {
+          perView: 4,
+          spacing: 16,
+        },
+      },
     },
   });
   return (
-    <section className="mb-8">
+    <section className="md:mb-8  mx-4 md:mx-0 mb-4">
       <div className="flex justify-start mb-4 mt-6  max-w-6xl mx-auto ">
-        <h2 className="text-xl font-bold text-[#0C1D5A]">PRODUK TERLARIS</h2>
+        <h2 className="md:text-xl text-lg font-bold text-[#0C1D5A]">{title}</h2>
       </div>
       <div className="max-w-6xl mx-auto hover:cursor-grab">
         <div ref={ref} className="keen-slider ">
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -32,7 +37,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -59,7 +64,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -70,7 +75,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -97,7 +102,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -108,7 +113,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -135,7 +140,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -146,7 +151,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -173,7 +178,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -184,7 +189,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -211,7 +216,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -222,7 +227,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -249,7 +254,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -260,7 +265,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -287,7 +292,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -298,7 +303,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -325,7 +330,7 @@ function FavoriteSlider() {
           </div>
           <div className="keen-slider__slide number-slide1">
             <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border  rounded-xl relative  border-gray-100  ">
-              <div className="px-8">
+              <div className="md:px-8 flex justify-center md:mx-0">
                 <img
                   src="/product/aerox.png"
                   alt="produk-aerox"
@@ -336,7 +341,7 @@ function FavoriteSlider() {
               </div>
               <div className="space-y-2 -mt-3">
                 <p className="text-[#3D59A4] text-lg font-bold">Aerox 155</p>
-                <div className="bg-blue-950 -skew-x-12 text-sm px-3 py-1 inline-flex">
+                <div className="bg-[#08154B] -skew-x-12 text-sm px-3 py-1 inline-flex">
                   <div className="-skew-x-0 text-white">
                     <span>RP. 2.550.000</span>
                   </div>
@@ -367,4 +372,4 @@ function FavoriteSlider() {
   );
 }
 
-export default FavoriteSlider;
+export default ProductSlider;

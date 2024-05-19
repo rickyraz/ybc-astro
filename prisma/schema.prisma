@@ -24,7 +24,7 @@ model Product {
   id              Int                  @id @default(autoincrement())
   categoryId      Int
   name            String
-  slug            String?               // Slug untuk URL produk
+  slug            String               // Slug untuk URL produk
   description     String?
   dealerContact   String
   category        Category             @relation(fields: [categoryId], references: [id])

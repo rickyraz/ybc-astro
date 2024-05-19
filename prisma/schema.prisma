@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  products  Product[]
+}
+
+model Product {
+  id              Int                  @id @default(autoincrement())
+  categoryId      Int
+  name            String
+  slug            String?               // Slug untuk URL produk
+  description     String?
+  dealerContact   String
+  category        Category             @relation(fields: [categoryId], references: [id])
+  variations      ProductVariation[]
+  features        ProductFeature[]
+  specifications  ProductSpecification[]
+  videos          ProductVideo[]
+  images          ProductImage[]       // Hero images untuk produk
+  relatedProducts Product[]            @relation("relatedProducts")
+  mainProduct     Product?             @relation("relatedProducts", fields: [mainProductId], references: [id])
+  mainProductId   Int?
+  purchases       Purchase[]
+}
+
+model ProductVariation {
+  id            Int             @id @default(autoincrement())
+  productId     Int
+  type          String
+  price         Float
+  product       Product         @relation(fields: [productId], references: [id])
+  colors        VariationColor[]
+}
+
+model VariationColor {
+  id            Int              @id @default(autoincrement())
+  variationId   Int
+  color         String
+  hexCode       String           // Hex code untuk warna
+  variation     ProductVariation @relation(fields: [variationId], references: [id])
+  images        ProductImage[]   // Gambar spesifik untuk setiap warna varian
+}
+
+model ProductFeature {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  title       String           // Judul fitur
+  featureImage String          // Gambar fitur (URL gambar)
+  description String?
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+model ProductSpecification {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  section     String
+  details     String
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+model ProductVideo {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  videoUrl    String
+  product     Product @relation(fields: [productId], references: [id])
+}
+
+// kalau dia cuma sama productId nya aja maka Hero Image
+// kalau dia variationColorId sama productId nya maka gambar motor perwarna
+model ProductImage {
+  id              Int             @id @default(autoincrement())
+  productId       Int?            // Hubungan opsional dengan Produk
+  variationColorId Int?           // Hubungan opsional dengan Warna Varian
+  imageUrl        String
+  product         Product?        @relation(fields: [productId], references: [id])
+  color           VariationColor? @relation(fields: [variationColorId], references: [id])
+}
+
+model Purchase {
+  id          Int      @id @default(autoincrement())
+  name        String   // Nama pembeli
+  email       String   // Email pembeli
+  phoneNumber String   // Nomor telepon pembeli
+  productId   Int      // Referensi ke produk yang dibeli
+  purchaseDate DateTime 
+  product     Product  @relation(fields: [productId], references: [id])
+}

@@ -1,18 +1,28 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import HeroSlider from "../components/HeroSlider";
-import ProductSlider from "../components/ProductSlider";
-import Welcome from "../components/landing_page/Welcome";
-import ProductFilter from "../components/landing_page/ProductFilter";
-import ArticleHome from "../components/landing_page/ArticleHome";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { YbcLanding } from "../app/YbcApp";
+
+// interface Props {
+//   title: string;
+// }
+
+// const { title } = Astro.props;
 ---
 
-<Layout title="Yamaha Bahana Ciamis">
-  <main>
-    <HeroSlider client:only="react" />
-    <ProductSlider client:only="react" title={"PRODUK TERLARIS"} />
-    <Welcome />
-    <ProductFilter />
-    <ArticleHome client:only="react" />
-  </main>
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Yamaha Bahana Ciamis</title>
+  </head>
+  <body>
+    <Header />
+    <YbcLanding client:only="react" />
+    <Footer client:only="react" />
+  </body>
+</html>

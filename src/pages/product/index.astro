@@ -1,16 +1,22 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import HeroSlider from "../../components/HeroSlider";
-import ProductSingle from "../../components/single_product/Product";
-import Feature from "../../components/single_product/Feature";
-import Specs from "../../components/single_product/Specs";
-import ProductSlider from "../../components/ProductSlider";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { YbcProduct } from "../../app/YbcApp";
 ---
 
-<Layout title="Product - Yamaha Bahana Ciamis">
-  <HeroSlider client:only="react" />
-  <ProductSingle />
-  <Feature client:only="react" />
-  <Specs client:only="react" />
-  <ProductSlider client:only="react" title={"PRODUK TERKAIT"} />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Yamaha Bahana Ciamis</title>
+  </head>
+  <body>
+    <Header />
+    <YbcProduct client:only="react" />
+    <Footer client:only="react" />
+  </body>
+</html>

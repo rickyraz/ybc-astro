@@ -1,23 +1,51 @@
 import { CircleArrowRight } from "lucide-react";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import * as product_service from "../../services/product_service";
 
 function ProductFilter() {
+  const {
+    data: categoriesData,
+    isError: isCategoryFetchError,
+    isPending: isCategoryFetchPending,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: product_service.fetchCategory,
+  });
+
+  const categories = categoriesData?.data;
+
+  if (isCategoryFetchPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isCategoryFetchError) {
+    return <div>Something error with the site</div>;
+  }
+
+  console.log("categories", categories);
+
   return (
     <section className="max-w-6xl mx-auto  space-y-4 mb-8">
       <div className="flex justify-center">
         <h2 className="text-xl font-bold text-[#0C1D5A]">PRODUK </h2>
       </div>
-      <div className="flex justify-center space-x-4">
-        <div className="bg-blue-brand -skew-x-12 text-sm px-3 py-1 inline-flex">
+      <div className="flex flex-wrap justify-center space-x-3 space-y-1">
+        <div className="bg-blue-brand -skew-x-12 text-sm px-3 py-1 inline-flex text-center">
           <div className="-skew-x-0 text-white font-bold">
             <span>SEMUA</span>
           </div>
         </div>
-        <div className="text-blue-brand bg-white border-2 border-blue-brand -skew-x-12 text-sm px-3 py-1 inline-flex">
-          <div className="-skew-x-0  font-bold">
-            <span>MAXI</span>
-          </div>
-        </div>
+        {categories &&
+          categories.map((category) => (
+            <div
+              key={category.id}
+              className="text-blue-brand text-center bg-white border-2 border-blue-brand -skew-x-12 text-sm px-3 py-1 inline-flex"
+            >
+              <div className="-skew-x-0 font-bold">
+                <span>{category.name}</span>
+              </div>
+            </div>
+          ))}
       </div>
       <div className="flex md:flex-wrap md:flex-row flex-col mx-4 md:mx-0 md:space-x-4">
         <div className=" from-white to-gray-50 bg-gradient-to-b  px-4 pb-4 mt-12 border border-gray-100 rounded-xl relative">

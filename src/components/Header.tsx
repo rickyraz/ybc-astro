@@ -71,13 +71,15 @@ function Header() {
       <section className="bg-white after:top-0 shadow-sm ">
         <div className="max-w-6xl mx-auto ">
           <header className="flex items-center justify-between  py-6 mx-4 md:mx-0">
-            <img
-              src="/bahana-logo.png"
-              alt="Bahana Logo"
-              className="w-28 md:w-[125px] md:h-[50px]"
-              decoding="async"
-              loading="lazy"
-            />
+            <a href="/">
+              <img
+                src="/bahana-logo.png"
+                alt="Bahana Logo"
+                className="w-28 md:w-[125px] md:h-[50px]"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
             <Menu className="md:hidden mr-4" />
             <ul className="hidden  md:flex flex-1 justify-evenly font-bold text-[#08154B]">
               <li>PRODUK</li>

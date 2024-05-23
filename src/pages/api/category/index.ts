@@ -1,17 +1,21 @@
 import { prisma } from "../../../utils/prisma";
+import type { APIRoute } from "astro";
 
-export async function GET({ params }) {
+export const GET: APIRoute = async ({ params, request }) => {
   const allCategory = await prisma.category.findMany({
     include: {
-      products: true,
+      products: {
+        include: {
+          variations: true,
+        },
+      },
     },
   });
 
-  // return new Response(JSON.stringify({ msg: "hello world" }), {
   return new Response(JSON.stringify({ data: allCategory }), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
     },
   });
-}
+};

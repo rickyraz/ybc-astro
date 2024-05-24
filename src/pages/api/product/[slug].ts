@@ -6,6 +6,20 @@ export const GET: APIRoute = async ({ params, request }) => {
 
   const spesificProductBySlug = await prisma.product.findUnique({
     where: { slug: slugProduct },
+    include: {
+      variations: {
+        include: {
+          colors: {
+            include: {
+              images: true,
+            },
+          },
+        },
+      },
+      images: true,
+      specifications: true,
+      features: true,
+    },
   });
 
   return new Response(JSON.stringify({ data: spesificProductBySlug }), {

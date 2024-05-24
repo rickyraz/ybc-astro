@@ -2,7 +2,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import * as React from "react";
 
-function Feature() {
+function Feature({ feature_data }) {
   const [ref] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free-snap",
@@ -22,76 +22,21 @@ function Feature() {
 
       <div className="max-w-6xl mx-auto">
         <div ref={ref} className="keen-slider text-white ">
-          <div className="keen-slider__slide number-slide1">
-            <div className="space-y-3">
-              <div className="w-full h-52 bg-blue-gray-100"></div>
-              <h2 className="text-lg font-semibold text-white">
-                Yamaha Motorcycle Connect
-              </h2>
-              <p className="text-sm  text-[#ECECEC]">
-                Teknologi modern dan informatif yang menghubungkan antara motor
-                dengan smartphone untuk menginformasikan rekomendasi perawatan,
-                konsumsi BBM, lokasi parkir terakhir, notifikasi malfungsi, dan
-                lain-lain. *Hanya tersedia di Connected/ABS Version.
-              </p>
+          {feature_data.map((feature) => (
+            <div key={feature.id} className="keen-slider__slide">
+              <div className="space-y-3">
+                <img
+                  src={feature.featureImage}
+                  alt={feature.title}
+                  className="w-full h-52 object-cover"
+                />
+                <h2 className="text-lg font-semibold text-white">
+                  {feature.title}
+                </h2>
+                <p className="text-sm text-[#ECECEC]">{feature.description}</p>
+              </div>
             </div>
-          </div>
-          <div className="keen-slider__slide number-slide2">
-            <div className="space-y-3">
-              <div className="w-full h-52 bg-blue-gray-100"></div>
-              <h2 className="text-lg font-semibold text-white">
-                Yamaha Motorcycle Connect
-              </h2>
-              <p className="text-sm  text-[#ECECEC]">
-                Teknologi modern dan informatif yang menghubungkan antara motor
-                dengan smartphone untuk menginformasikan rekomendasi perawatan,
-                konsumsi BBM, lokasi parkir terakhir, notifikasi malfungsi, dan
-                lain-lain. *Hanya tersedia di Connected/ABS Version.
-              </p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <div className="space-y-3">
-              <div className="w-full h-52 bg-blue-gray-100"></div>
-              <h2 className="text-lg font-semibold text-white">
-                Yamaha Motorcycle Connect
-              </h2>
-              <p className="text-sm  text-[#ECECEC]">
-                Teknologi modern dan informatif yang menghubungkan antara motor
-                dengan smartphone untuk menginformasikan rekomendasi perawatan,
-                konsumsi BBM, lokasi parkir terakhir, notifikasi malfungsi, dan
-                lain-lain. *Hanya tersedia di Connected/ABS Version.
-              </p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide4">
-            <div className="space-y-3">
-              <div className="w-full h-52 bg-blue-gray-100"></div>
-              <h2 className="text-lg font-semibold text-white">
-                Yamaha Motorcycle Connect
-              </h2>
-              <p className="text-sm  text-[#ECECEC]">
-                Teknologi modern dan informatif yang menghubungkan antara motor
-                dengan smartphone untuk menginformasikan rekomendasi perawatan,
-                konsumsi BBM, lokasi parkir terakhir, notifikasi malfungsi, dan
-                lain-lain. *Hanya tersedia di Connected/ABS Version.
-              </p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide5">
-            <div className="space-y-3">
-              <div className="w-full h-52 bg-blue-gray-100"></div>
-              <h2 className="text-lg font-semibold text-white">
-                Yamaha Motorcycle Connect
-              </h2>
-              <p className="text-sm  text-[#ECECEC]">
-                Teknologi modern dan informatif yang menghubungkan antara motor
-                dengan smartphone untuk menginformasikan rekomendasi perawatan,
-                konsumsi BBM, lokasi parkir terakhir, notifikasi malfungsi, dan
-                lain-lain. *Hanya tersedia di Connected/ABS Version.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

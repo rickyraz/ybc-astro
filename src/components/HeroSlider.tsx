@@ -2,7 +2,10 @@ import React from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
-function HeroSlider({ loop_status }) {
+function HeroSlider({ loop_status, hero, position_hero }) {
+  console.log("hero_Detail", hero[0]);
+  const hero_Detail = hero[0];
+
   const [sliderRef, instanceRef] = useKeenSlider(
     {
       slideChanged() {
@@ -43,33 +46,39 @@ function HeroSlider({ loop_status }) {
   );
   return (
     <section ref={sliderRef} className="keen-slider">
-      <div className="keen-slider__slide">
-        <img
-          src="/banner/hero-1.jpg"
-          alt="Benner 1"
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-          decoding="async"
-          loading="lazy"
-        />
-      </div>
-      <div className="keen-slider__slide">
-        <img
-          src="/banner/hero-2.jpg"
-          alt="Benner 2"
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-          decoding="async"
-          loading="lazy"
-        />
-      </div>
-      <div className="keen-slider__slide">
+      {position_hero === "product_detail" && (
+        <div className="keen-slider__slide">
+          <img
+            src={hero_Detail.imageUrl}
+            alt="Benner 1"
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            decoding="async"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      {position_hero !== "product_detail" && (
+        <div className="keen-slider__slide">
+          <img
+            src="/banner/hero-2.jpg"
+            alt="Benner 2"
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            decoding="async"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      {/* <div className="keen-slider__slide">
         <img
           src="/banner/hero-3.jpg"
           alt="Benner 3"
@@ -94,7 +103,7 @@ function HeroSlider({ loop_status }) {
           decoding="async"
           loading="lazy"
         />
-      </div>
+      </div> */}
     </section>
   );
 }

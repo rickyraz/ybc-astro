@@ -7,8 +7,25 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 
-function Specs() {
+function parseSpesifikasi(data) {
+  const rows = data.split("\n");
+  const specifications = [];
+  for (let row of rows) {
+    const [title, description] = row.split(";");
+    specifications.push({
+      title: title.trim(),
+      description: description.replace(/\\n/g, "\n").trim(), // Replacing \n with actual line breaks
+    });
+  }
+  return specifications;
+}
+
+function Specs({ specifications }) {
   const [open, setOpen] = React.useState(1);
+
+  if (specifications === null || specifications === undefined) {
+    return <p>there's no Spesification</p>;
+  }
 
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   return (
@@ -16,71 +33,46 @@ function Specs() {
       <h3 className=" text-2xl font-bold text-center pt-12 pb-8 text-white">
         Spesifikasi
       </h3>
-      <div className="max-w-4xl mx-auto space-y-4">
-        <Accordion open={open === 1}>
-          <AccordionHeader
-            onClick={() => handleOpen(1)}
-            className="text-white font-semibold text-lg pb-2"
+      <div className="max-w-4xl mx-auto space-y-4 ">
+        {specifications.map((spec, index) => (
+          <Accordion
+            key={spec.id}
+            open={open === spec.id}
+            className="text-white"
           >
-            Mesin
-          </AccordionHeader>
-          <AccordionBody>
-            <p className="text-white/70">
-              We&apos;re not always in the position that we want to be at.
-              We&apos;re constantly growing. We&apos;re constantly making
-              mistakes. We&apos;re constantly trying to express ourselves and
-              actualize our dreams.
-            </p>
-          </AccordionBody>
-        </Accordion>
-        <Accordion open={open === 2}>
-          <AccordionHeader
-            onClick={() => handleOpen(2)}
-            className="text-white font-semibold text-lg pb-2"
-          >
-            Rangka
-          </AccordionHeader>
-          <AccordionBody>
-            <p className="text-white/70">
-              We&apos;re not always in the position that we want to be at.
-              We&apos;re constantly growing. We&apos;re constantly making
-              mistakes. We&apos;re constantly trying to express ourselves and
-              actualize our dreams.
-            </p>
-          </AccordionBody>
-        </Accordion>
-        <Accordion open={open === 3}>
-          <AccordionHeader
-            onClick={() => handleOpen(3)}
-            className="text-white font-semibold text-lg pb-2"
-          >
-            Dimensi
-          </AccordionHeader>
-          <AccordionBody>
-            <p className="text-white/70">
-              We&apos;re not always in the position that we want to be at.
-              We&apos;re constantly growing. We&apos;re constantly making
-              mistakes. We&apos;re constantly trying to express ourselves and
-              actualize our dreams.
-            </p>
-          </AccordionBody>
-        </Accordion>
-        <Accordion open={open === 4}>
-          <AccordionHeader
-            onClick={() => handleOpen(4)}
-            className="text-white font-semibold text-lg pb-2"
-          >
-            Kelistrikan
-          </AccordionHeader>
-          <AccordionBody>
-            <p className="text-white/70">
-              We&apos;re not always in the position that we want to be at.
-              We&apos;re constantly growing. We&apos;re constantly making
-              mistakes. We&apos;re constantly trying to express ourselves and
-              actualize our dreams.
-            </p>
-          </AccordionBody>
-        </Accordion>
+            <AccordionHeader
+              onClick={() => handleOpen(spec.id)}
+              className="text-white font-semibold text-lg pb-2"
+            >
+              {spec.section}
+            </AccordionHeader>
+            {/* <AccordionBody>
+              {parseSpesifikasi(spec.details).map((detail, idx) => (
+                <p key={idx} className="text-white/70">
+                  <strong>{detail.title}:</strong> {detail.description}
+                </p>
+              ))}
+            </AccordionBody> */}
+            <AccordionBody>
+              <table className="w-full text-sm text-left text-white">
+                <thead>
+                  <tr>
+                    <th className="pb-2 font-semibold">Specification</th>
+                    <th className="pb-2 font-semibold">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {parseSpesifikasi(spec.details).map((detail, idx) => (
+                    <tr key={idx}>
+                      <td className="py-1">{detail.title}</td>
+                      <td className="py-1">{detail.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </AccordionBody>
+          </Accordion>
+        ))}
       </div>
     </section>
   );

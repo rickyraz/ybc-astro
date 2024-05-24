@@ -19,6 +19,8 @@ function parseSpesifikasi(data: string): SpesifikasiMotor[] {
   return spesifikasi;
 }
 
+export { parseSpesifikasi };
+
 // import React from "react";
 
 // interface SpesifikasiMotor {

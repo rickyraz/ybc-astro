@@ -2,6 +2,10 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { YbcProduct } from "../../app/YbcApp";
+
+const { slug } = Astro.params;
+
+console.log("slug", slug);
 ---
 
 <!doctype html>
@@ -12,11 +16,11 @@ import { YbcProduct } from "../../app/YbcApp";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Yamaha Bahana Ciamis</title>
+    <title>Yamaha Bahana Ciamis - {slug}</title>
   </head>
   <body>
     <Header />
-    <YbcProduct client:only="react" />
+    <YbcProduct client:only="react" slug={slug} />
     <Footer client:only="react" />
   </body>
 </html>

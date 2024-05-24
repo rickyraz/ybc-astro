@@ -6,7 +6,15 @@ export const GET: APIRoute = async ({ params, request }) => {
     include: {
       products: {
         include: {
-          variations: true,
+          images: true,
+          variations: {
+            select: {
+              id: true,
+              price: true,
+            },
+            orderBy: { price: "asc" },
+          },
+          category: true,
         },
       },
     },

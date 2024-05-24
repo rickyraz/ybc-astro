@@ -21,10 +21,10 @@ function YbcLanding() {
   );
 }
 
-function YbcProduct() {
+function YbcProduct({ slug }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ProductDetail />
+      <ProductDetail slug={slug} />
     </QueryClientProvider>
   );
 }
@@ -34,7 +34,7 @@ function YbcProduct() {
 const LandingPage = () => {
   return (
     <main>
-      <HeroSlider />
+      <HeroSlider loop_status={true} />
       <ProductSlider title={"PRODUK TERLARIS"} />
       <Welcome />
       <ProductFilter />
@@ -43,10 +43,12 @@ const LandingPage = () => {
   );
 };
 
-const ProductDetail = () => {
+const ProductDetail = ({ slug }) => {
+  console.log("slug di Product Detail : App", slug);
+
   return (
     <main>
-      <HeroSlider />
+      <HeroSlider loop_status={false} />
       <ProductSingle />
       <Feature />
       <Specs />

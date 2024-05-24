@@ -2,13 +2,13 @@ import React from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
-function HeroSlider() {
+function HeroSlider({ loop_status }) {
   const [sliderRef, instanceRef] = useKeenSlider(
     {
       slideChanged() {
         console.log("slide changed");
       },
-      loop: true,
+      loop: loop_status,
     },
     [
       (slider) => {

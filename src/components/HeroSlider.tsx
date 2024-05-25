@@ -2,9 +2,8 @@ import React from "react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
-function HeroSlider({ loop_status, hero, position_hero }) {
-  console.log("hero_Detail", hero[0]);
-  const hero_Detail = hero[0];
+function HeroSlider({ loop_status, hero_data, position_hero }) {
+  const hero_Detail = hero_data[0];
 
   const [sliderRef, instanceRef] = useKeenSlider(
     {
@@ -62,21 +61,29 @@ function HeroSlider({ loop_status, hero, position_hero }) {
         </div>
       )}
 
-      {position_hero !== "product_detail" && (
-        <div className="keen-slider__slide">
-          <img
-            src="/banner/hero-2.jpg"
-            alt="Benner 2"
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-            decoding="async"
-            loading="lazy"
-          />
-        </div>
-      )}
+      {position_hero !== "product_detail" &&
+        hero_data.map(
+          (
+            item: { imageUrl: string; product: { slug: any } },
+            index: React.Key
+          ) => (
+            <div key={index} className="keen-slider__slide">
+              <a href={`/product/${item.product.slug}`} target="_blank">
+                <img
+                  src={item.imageUrl}
+                  alt={`Banner ${item.product.slug}`}
+                  sizes="100vw"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  decoding="async"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          )
+        )}
 
       {/* <div className="keen-slider__slide">
         <img

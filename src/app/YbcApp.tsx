@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { fetchProduct } from "../services/product_detail_service";
 import { fetchProductByCategory } from "../services/product_per_category";
+import { fetchHeroAll } from "../services/product_hero";
 // -----
 import HeroSlider from "../components/HeroSlider";
 import ProductSlider from "../components/ProductSlider";
@@ -40,9 +41,36 @@ function YbcProduct({ slug }) {
 // --------------------------------------------
 
 const LandingPage = () => {
+  const {
+    data: heroAll,
+    isError: isHeroAllFetchError,
+    isPending: isHeroAllFetchPending,
+  } = useQuery({
+    queryKey: ["hero-all"],
+    queryFn: () => fetchHeroAll(),
+    staleTime: 600_000_000,
+  });
+
+  const heroAllData = heroAll?.data;
+  console.log("heroAllData", heroAllData);
+
+  if (isHeroAllFetchPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isHeroAllFetchError) {
+    return <div>Something error with the site, comeback again</div>;
+  }
+
   return (
     <main>
-      <HeroSlider loop_status={true} hero={""} position_hero={"landing_page"} />
+      {heroAll && heroAll.data && (
+        <HeroSlider
+          loop_status={true}
+          hero_data={heroAllData}
+          position_hero={"landing_page"}
+        />
+      )}
       <ProductSlider
         title={"PRODUK TERLARIS"}
         per_view_desk={4}
@@ -64,7 +92,7 @@ const ProductDetail = ({ slug }) => {
     queryKey: ["product-detail", slug],
     queryFn: () => fetchProduct(slug),
     enabled: !!slug,
-    staleTime: 600000000,
+    staleTime: 600_000_000,
   });
 
   const produk = productData?.data;
@@ -83,14 +111,18 @@ const ProductDetail = ({ slug }) => {
 
   return (
     <main>
-      <HeroSlider
-        loop_status={false}
-        hero={hero}
-        position_hero={"product_detail"}
-      />
-      <ProductSingle product_single_data={produk} />
-      <Feature feature_data={features} />
-      <Specs specifications={specifications} />
+      {hero && produk && features && specifications && (
+        <>
+          <HeroSlider
+            loop_status={false}
+            hero_data={hero}
+            position_hero={"product_detail"}
+          />
+          <ProductSingle product_single_data={produk} />
+          <Feature feature_data={features} />
+          <Specs specifications={specifications} />
+        </>
+      )}
       {categoryId && (
         <Suspense fallback={<div>Loading related products...</div>}>
           <CategoriesAndProducts

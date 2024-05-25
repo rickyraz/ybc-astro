@@ -1,4 +1,4 @@
-import { prisma } from "../../../utils/prisma";
+import { prisma } from "../../utils/prisma";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ params, request }) => {

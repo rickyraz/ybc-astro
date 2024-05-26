@@ -116,6 +116,8 @@ const HeroSliderMain = () => {
   );
 };
 
+// ----------------
+
 const ProductDetail = ({ slug }) => {
   const {
     data: productData,

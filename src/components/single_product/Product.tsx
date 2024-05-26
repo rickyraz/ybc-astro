@@ -9,8 +9,8 @@ function ProductSingle({ product_single_data }) {
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
   // Helper to extract the current variant and color
-  const currentVariant = product_single_data.variations[selectedVariantIndex];
-  const currentColor = currentVariant.colors[selectedColorIndex];
+  const currentVariant = product_single_data.variations?.[selectedVariantIndex];
+  const currentColor = currentVariant?.colors?.[selectedColorIndex];
 
   // Define animation settings
   // Define animation settings correctly
@@ -31,12 +31,12 @@ function ProductSingle({ product_single_data }) {
         {product_single_data.variations.map((variant, index) => (
           <div
             key={variant.id}
-            className={`-skew-x-12 px-3 py-1 inline-flex ${
+            className={`-skew-x-12 px-3 min-w-36 justify-center  py-1 inline-flex ${
               index === selectedVariantIndex ? "bg-blue-brand" : "bg-[#d1d1d1]"
             } cursor-pointer`}
             onClick={() => setSelectedVariantIndex(index)}
           >
-            <div className="-skew-x-0 text-white text-lg font-bold">
+            <div className="-skew-x-0 text-white text-lg font-bold text-center">
               <span>{variant.type}</span>
             </div>
           </div>
@@ -47,8 +47,8 @@ function ProductSingle({ product_single_data }) {
         {/* gambar product untuk tiap warna di tiap type variant */}
 
         <motion.img
-          key={currentColor.images[0].imageUrl}
-          src={currentColor.images[0].imageUrl}
+          key={currentColor?.images?.[0]?.imageUrl}
+          src={currentColor?.images?.[0]?.imageUrl}
           alt={`${product_single_data.name}-${currentColor.color}`}
           width={450}
           height={450}
@@ -66,7 +66,7 @@ function ProductSingle({ product_single_data }) {
           <div className="w-16 h-5 md:w-[102.95px] md:h-[24.5px] bg-black -skew-x-12" />
           <div className="w-16 h-5 md:w-[102.95px] md:h-[24.5px] bg-[#B0B0B0] -skew-x-12 border-4 border-gray-900" />
         </div> */}
-        <div className="flex justify-center pt-24 space-x-4">
+        <div className="flex justify-center pt-24 space-x-2 ">
           {/* Display color swatches */}
           {currentVariant.colors.map((color, index) => (
             <div
@@ -75,7 +75,7 @@ function ProductSingle({ product_single_data }) {
               className={`  w-[102.95px] h-[32px]  -skew-x-12 cursor-pointer border-4 ${
                 index === selectedColorIndex
                   ? "border-gray-900"
-                  : "border-transparent"
+                  : "border-gray-900/5"
               }`}
               style={{ backgroundColor: `${color.hexCode}` }}
               onClick={() => setSelectedColorIndex(index)}

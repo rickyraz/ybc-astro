@@ -9,11 +9,9 @@ import {
 const MAP_ID = "70c4dae16e716d32";
 const MAP_API_KEY = "AIzaSyAEdarWRWqFLi-tANiQxVCN_Tyt95aUSks";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 function Footer() {
   const position = { lat: -7.3257708, lng: 108.3272193 };
-  const [markerRef, marker] = useAdvancedMarkerRef();
+  const [markerRef] = useAdvancedMarkerRef();
 
   return (
     <section>

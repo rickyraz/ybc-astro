@@ -25,8 +25,9 @@ model Product {
   categoryId      Int
   name            String
   slug            String               @unique // Tambahkan @unique di sini
-  description     String?
   dealerContact   String
+  description     String?
+  label           String?
   category        Category             @relation(fields: [categoryId], references: [id])
   variations      ProductVariation[]
   features        ProductFeature[]

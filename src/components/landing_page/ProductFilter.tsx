@@ -1,29 +1,9 @@
 import { CircleArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import * as product_service from "../../services/product_service";
 import { useState } from "react";
 
-function ProductFilter() {
-  const {
-    data: categoriesData,
-    isError: isCategoryFetchError,
-    isPending: isCategoryFetchPending,
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: product_service.fetchCategory,
-  });
-
-  const categories = categoriesData?.data;
+function ProductFilter({ categories }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
-
-  if (isCategoryFetchPending) {
-    return <div>Loading...</div>;
-  }
-
-  if (isCategoryFetchError) {
-    return <div>Something error with the site</div>;
-  }
-
   const handleFilterChange = (category) => {
     setSelectedCategory(category);
   };

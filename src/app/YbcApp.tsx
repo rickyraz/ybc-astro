@@ -7,6 +7,8 @@ import {
 import { fetchProduct } from "../services/product_detail_service";
 import { fetchProductByCategory } from "../services/product_per_category";
 import { fetchHeroAll } from "../services/product_hero";
+import { fetchCategory } from "../services/product_service";
+
 // -----
 import HeroSlider from "../components/HeroSlider";
 import ProductSlider from "../components/ProductSlider";
@@ -77,10 +79,35 @@ const LandingPage = () => {
         product_spesific_data=""
       />
       <Welcome />
-      <ProductFilter />
+      <Suspense fallback={<div>Loading all categories and products...</div>}>
+        <AllProduct />
+      </Suspense>
       <ArticleHome />
     </main>
   );
+};
+
+const AllProduct = () => {
+  const {
+    data: categoriesData,
+    isError: isCategoryFetchError,
+    isPending: isCategoryFetchPending,
+  } = useSuspenseQuery({
+    queryKey: ["categories"],
+    queryFn: () => fetchCategory(),
+  });
+
+  const categories = categoriesData?.data;
+
+  if (isCategoryFetchPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isCategoryFetchError) {
+    return <div>Something error with the site</div>;
+  }
+
+  return <ProductFilter categories={categories} />;
 };
 
 const ProductDetail = ({ slug }) => {
@@ -143,7 +170,7 @@ const CategoriesAndProducts = ({ categoryId, excludeProductId }) => {
   } = useSuspenseQuery({
     queryKey: ["product-by-category", categoryId],
     queryFn: () => fetchProductByCategory(categoryId),
-    staleTime: 600000000,
+    staleTime: 600_000_000,
   });
 
   if (isProductByCategoryFetchPending) {

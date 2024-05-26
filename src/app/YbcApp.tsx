@@ -43,36 +43,11 @@ function YbcProduct({ slug }) {
 // --------------------------------------------
 
 const LandingPage = () => {
-  const {
-    data: heroAll,
-    isError: isHeroAllFetchError,
-    isPending: isHeroAllFetchPending,
-  } = useQuery({
-    queryKey: ["hero-all"],
-    queryFn: () => fetchHeroAll(),
-    staleTime: 600_000_000,
-  });
-
-  const heroAllData = heroAll?.data;
-  console.log("heroAllData", heroAllData);
-
-  if (isHeroAllFetchPending) {
-    return <div>Loading...</div>;
-  }
-
-  if (isHeroAllFetchError) {
-    return <div>Something error with the site, comeback again</div>;
-  }
-
   return (
     <main>
-      {heroAll && heroAll.data && (
-        <HeroSlider
-          loop_status={true}
-          hero_data={heroAllData}
-          position_hero={"landing_page"}
-        />
-      )}
+      <Suspense fallback={<div>Loading hero products...</div>}>
+        <HeroSliderMain />
+      </Suspense>
       <ProductSlider
         title={"PRODUK TERLARIS"}
         per_view_desk={4}
@@ -108,6 +83,37 @@ const AllProduct = () => {
   }
 
   return <ProductFilter categories={categories} />;
+};
+
+const HeroSliderMain = () => {
+  const {
+    data: heroAll,
+    isError: isHeroAllFetchError,
+    isPending: isHeroAllFetchPending,
+  } = useSuspenseQuery({
+    queryKey: ["hero-all"],
+    queryFn: () => fetchHeroAll(),
+    staleTime: 600_000_000,
+  });
+
+  const heroAllData = heroAll?.data;
+  console.log("heroAllData", heroAllData);
+
+  if (isHeroAllFetchPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isHeroAllFetchError) {
+    return <div>Something error with the site, comeback again</div>;
+  }
+
+  return (
+    <HeroSlider
+      loop_status={true}
+      hero_data={heroAllData}
+      position_hero={"landing_page"}
+    />
+  );
 };
 
 const ProductDetail = ({ slug }) => {

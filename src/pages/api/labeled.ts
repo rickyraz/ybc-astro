@@ -8,6 +8,15 @@ export const GET: APIRoute = async ({ params, request }) => {
         not: null,
       },
     },
+    include: {
+      images: true,
+      variations: {
+        select: {
+          id: true,
+          price: true,
+        },
+      },
+    },
   });
 
   return new Response(JSON.stringify({ data: allCategory }), {

@@ -8,7 +8,7 @@ import { fetchProduct } from "../services/product_detail_service";
 import { fetchProductByCategory } from "../services/product_per_category";
 import { fetchHeroAll } from "../services/product_hero";
 import { fetchCategory } from "../services/product_service";
-
+import { fetchProductLabeled } from "../services/product_labeled";
 // -----
 import HeroSlider from "../components/HeroSlider";
 import ProductSlider from "../components/ProductSlider";
@@ -48,11 +48,10 @@ const LandingPage = () => {
       <Suspense fallback={<div>Loading hero products...</div>}>
         <HeroSliderMain />
       </Suspense>
-      <ProductSlider
-        title={"PRODUK TERLARIS"}
-        per_view_desk={4}
-        product_spesific_data=""
-      />
+      <Suspense fallback={<div>Loading labelled products...</div>}>
+        <ProductLabeled />
+      </Suspense>
+
       <Welcome />
       <Suspense fallback={<div>Loading all categories and products...</div>}>
         <AllProduct />
@@ -112,6 +111,37 @@ const HeroSliderMain = () => {
       loop_status={true}
       hero_data={heroAllData}
       position_hero={"landing_page"}
+    />
+  );
+};
+
+const ProductLabeled = () => {
+  const {
+    data: productLabelled,
+    isError: iProductLabelledFetchError,
+    isPending: isProductLabelledFetchPending,
+  } = useSuspenseQuery({
+    queryKey: ["product-by-labeled"],
+    queryFn: () => fetchProductLabeled(),
+    staleTime: 600_000_000,
+  });
+  console.log("productLabelled", productLabelled);
+
+  const datalabelled = productLabelled?.data;
+
+  if (isProductLabelledFetchPending) {
+    return <div>Loading related products...</div>;
+  }
+
+  if (iProductLabelledFetchError) {
+    return <div>Error loading products with labelled.</div>;
+  }
+
+  return (
+    <ProductSlider
+      title={"PRODUK TERLARIS"}
+      per_view_desk={4}
+      product_spesific_data={datalabelled}
     />
   );
 };

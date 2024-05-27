@@ -12,12 +12,12 @@ function Welcome() {
           <p>
             Selamat datang di situs resmi dealer Yamaha Bahana Ciamis. Sebagai
             dealer resmi Yamaha, kami melayani pembelian sepeda motor baik
-            secara tunai maupun kredit untuk area Garut, Tasik, Bandung,
-            Sumedang, dan sekitarnya. Kami berkomitmen untuk memudahkan para
-            pelanggan setia Yamaha dalam memperoleh produk yang kami sediakan
-            melalui layanan online yang praktis. Nikmati proses pemesanan yang
-            cepat, mudah, aman, dan nyaman tanpa perlu repot mengunjungi dealer
-            atau menggunakan transportasi.
+            secara tunai maupun kredit untuk area Tasikmalaya, Ciamis, Banjar
+            dan sekitarnya. Kami berkomitmen untuk memudahkan para pelanggan
+            setia Yamaha dalam memperoleh produk yang kami sediakan melalui
+            layanan online yang praktis. Nikmati proses pemesanan yang cepat,
+            mudah, aman, dan nyaman tanpa perlu repot mengunjungi dealer atau
+            menggunakan transportasi.
           </p>
         </div>
         <div className="md:w-1/3 flex justify-end">

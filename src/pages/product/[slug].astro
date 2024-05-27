@@ -19,7 +19,7 @@ console.log("slug", slug);
     <title>Yamaha Bahana Ciamis - {slug}</title>
   </head>
   <body>
-    <Header />
+    <Header client:only="react" />
     <YbcProduct client:only="react" slug={slug} />
     <Footer client:only="react" />
   </body>

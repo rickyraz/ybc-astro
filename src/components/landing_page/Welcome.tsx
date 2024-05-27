@@ -9,7 +9,7 @@ function Welcome() {
             Selamat Datang di Dealer Resmi Yamaha{" "}
             <br className="hidden md:block" /> Bahana Ciamis
           </h2>
-          <p>
+          <p id="produk-category">
             Selamat datang di situs resmi dealer Yamaha Bahana Ciamis. Sebagai
             dealer resmi Yamaha, kami melayani pembelian sepeda motor baik
             secara tunai maupun kredit untuk area Tasikmalaya, Ciamis, Banjar
